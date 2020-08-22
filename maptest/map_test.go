@@ -7,15 +7,18 @@ import (
 )
 
 func TestAccess(t *testing.T) {
-	m := map[int]string{1: "apple", 2: "boy", 3: "cat"}
+	m := map[int]int{1: 100, 2: 200, 3: 300}
 
 	// add element
-	m[4] = "dog"
+	m[4] = 400
 
 	// get value
 	v, ok := m[4]
 	assert.True(t, ok)
 	assert.Equal(t, v, m[4])
+	// m[4] is not modify, because v is only a copy
+	v = 500
+	assert.Equal(t, 400, m[4])
 
 	v, ok = m[5] // won't create element
 	assert.False(t, ok)
