@@ -92,3 +92,16 @@ func TestSubslice(t *testing.T) {
 	assert.Equal(t, 5, len(c))
 	assert.Equal(t, 5, cap(c))
 }
+
+func Test2DSliceAppend(t *testing.T) {
+	var s2D [][]int
+	s := []int{1, 2, 3}
+	s2D = append(s2D, s)
+
+	s = s[:2]
+	s = append(s, 4)
+	s2D = append(s2D, s)
+
+	// will print [[1 2 4] [1 2 4]]  ---> be careful !!, the underlying array still connect together
+	log.Println(s2D)
+}
