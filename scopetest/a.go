@@ -1,8 +1,17 @@
 package scopetest
 
-var a int = 3
-var b int = 5
+func getPrivateA() int {
+	return privateA
+}
 
-func getb() int {
-	return b
+func GetPrivateA() int {
+	return privateA
+}
+
+func getPublicA() int {
+	return PublicA
+}
+
+func GetPublicA() int {
+	return PublicA
 }
