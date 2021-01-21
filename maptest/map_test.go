@@ -59,8 +59,17 @@ func TestStructValue(t *testing.T) {
 		Age  int
 	}
 
-	m := map[string]People{"Lily": {"Lily", 29}, "SP": {"SP", 31}}
+	m := map[string]People{
+		"Bob": {"Bob", 29},
+		"Amy": {"Amy", 31},
+	}
 	// compiler error : cannot assign to struct field m["Lily"].Age in map
-	// m["Lily"].Age = 30
+	// m["Bob"].Age = 30
 	_ = m
+
+	m2 := map[string]*People{
+		"Bob": &People{"Bob", 29},
+		"Amy": &People{"Amy", 31},
+	}
+	m2["Amy"].Age = 32
 }
