@@ -7,6 +7,33 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+type Car struct {
+	Price int
+	Brand string
+}
+
+func TestSliceRange(t *testing.T) {
+	cars := []Car{ Car{50, "toyota"}, Car{300, "bmw"}, Car{500, "porsche"} }
+	for _, car := range cars {
+		car.Price += 10
+	}
+
+	// below tests will be failed, because car is only the copy of cars[i]
+	// assert.Equal(t, 60, cars[0].Price)
+	// assert.Equal(t, 310, cars[1].Price)
+	// assert.Equal(t, 510, cars[2].Price)
+}
+
+func TestSliceRange2(t *testing.T) {
+	cars := []Car{ Car{50, "toyota"}, Car{300, "bmw"}, Car{500, "porsche"} }
+	for i, _ := range cars {
+		cars[i].Price += 10
+	}
+	assert.Equal(t, 60, cars[0].Price)
+	assert.Equal(t, 310, cars[1].Price)
+	assert.Equal(t, 510, cars[2].Price)
+}
+
 func TestSliceAssignment(t *testing.T) {
 	names := []string{"Lily", "SP", "Apple"}
 	names2 := names
