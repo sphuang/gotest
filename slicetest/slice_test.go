@@ -94,6 +94,11 @@ func TestInit(t *testing.T) {
 	assert.False(t, e == nil)
 	assert.Zero(t, len(e))
 	assert.Zero(t, cap(e))
+
+	cs := make([]chan int, 10)
+	for i := range cs {
+		assert.Nil(t, cs[i])
+	}
 }
 
 func TestAccess(t *testing.T) {
